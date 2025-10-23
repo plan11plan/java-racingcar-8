@@ -16,10 +16,10 @@ class RefereeTest {
                 new Car(new CarName("woni")).tryMove(5),
                 new Car(new CarName("jun"))
         );
-        Referee referee = new Referee(cars);
+        Referee referee = new Referee();
 
         // when
-        int maxPosition = referee.findMaxPosition();
+        int maxPosition = referee.findMaxPosition(cars);
 
         // then
         Assertions.assertThat(maxPosition).isEqualTo(2);
@@ -34,10 +34,10 @@ class RefereeTest {
                 new Car(new CarName("woni")).tryMove(5).tryMove(5),
                 new Car(new CarName("jun"))
         );
-        Referee referee = new Referee(cars);
+        Referee referee = new Referee();
 
         // when
-        int maxPosition = referee.findMaxPosition();
+        int maxPosition = referee.findMaxPosition(cars);
 
         // then
         Assertions.assertThat(maxPosition).isEqualTo(2);
@@ -50,10 +50,10 @@ class RefereeTest {
         List<Car> cars = List.of(
                 new Car(new CarName("pobi")).tryMove(5).tryMove(5)
         );
-        Referee referee = new Referee(cars);
+        Referee referee = new Referee();
 
         // when
-        int maxPosition = referee.findMaxPosition();
+        int maxPosition = referee.findMaxPosition(cars);
 
         // then
         Assertions.assertThat(maxPosition).isEqualTo(2);
@@ -68,11 +68,11 @@ class RefereeTest {
                 new Car(new CarName("woni")).tryMove(5),
                 new Car(new CarName("jun"))
         );
-        Referee referee = new Referee(cars);
-        int maxPosition = referee.findMaxPosition();
+        Referee referee = new Referee();
+        int maxPosition = referee.findMaxPosition(cars);
 
         // when
-        List<Car> winners = referee.electWinners(maxPosition);
+        List<Car> winners = referee.electWinners(cars, maxPosition);
 
         // then
         Assertions.assertThat(winners.size()).isEqualTo(1);
@@ -88,11 +88,11 @@ class RefereeTest {
                 new Car(new CarName("woni")).tryMove(5).tryMove(5),
                 new Car(new CarName("jun"))
         );
-        Referee referee = new Referee(cars);
-        int maxPosition = referee.findMaxPosition();
+        Referee referee = new Referee();
+        int maxPosition = referee.findMaxPosition(cars);
 
         // when
-        List<Car> winners = referee.electWinners(maxPosition);
+        List<Car> winners = referee.electWinners(cars, maxPosition);
 
         // then
         Assertions.assertThat(winners.size()).isEqualTo(2);
@@ -101,7 +101,7 @@ class RefereeTest {
 
     }
 
-    @DisplayName("우승자를 선출한다. - ㅁㅗㄷㅜ")
+    @DisplayName("우승자를 선출한다. - 모두")
     @Test
     void electWinners_all_winner() {
         // given
@@ -110,11 +110,11 @@ class RefereeTest {
                 new Car(new CarName("woni")).tryMove(5).tryMove(5),
                 new Car(new CarName("jun")).tryMove(5).tryMove(5)
         );
-        Referee referee = new Referee(cars);
-        int maxPosition = referee.findMaxPosition();
+        Referee referee = new Referee();
+        int maxPosition = referee.findMaxPosition(cars);
 
         // when
-        List<Car> winners = referee.electWinners(maxPosition);
+        List<Car> winners = referee.electWinners(cars, maxPosition);
 
         // then
         Assertions.assertThat(winners.size()).isEqualTo(3);
@@ -132,11 +132,11 @@ class RefereeTest {
                 new Car(new CarName("woni")).tryMove(5).tryMove(5),
                 new Car(new CarName("jun")).tryMove(5).tryMove(5)
         );
-        Referee referee = new Referee(cars);
-        int maxPosition = referee.findMaxPosition();
+        Referee referee = new Referee();
+        int maxPosition = referee.findMaxPosition(cars);
 
         // when
-        List<Car> winners = referee.electWinners(maxPosition);
+        List<Car> winners = referee.electWinners(cars, maxPosition);
 
         // then
         Assertions.assertThat(winners.size()).isEqualTo(3);
