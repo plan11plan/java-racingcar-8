@@ -9,9 +9,9 @@
 - [x] 유효한 입력을 CarName 리스트로 변환
     - given: "pobi,woni,jun" / then: [CarName("pobi"), CarName("woni"), CarName("jun")]
     - given: " pobi , woni , jun " / then: [CarName("pobi"), CarName("woni"), CarName("jun")] (공백 제거)
-- [ ] null 입력 시 예외 발생
+- [x] null 입력 시 예외 발생
     - given: null / then: IllegalArgumentException ("입력이 비어 있습니다")
-- [ ] 빈 문자열 입력 시 예외 발생
+- [x] 빈 문자열 입력 시 예외 발생
     - given: "" / then: IllegalArgumentException ("입력이 비어 있습니다")
     - given: "   " / then: IllegalArgumentException ("입력이 비어 있습니다")
 - [ ] 연속된 구분자 입력 시 예외 발생

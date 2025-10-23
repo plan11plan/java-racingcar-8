@@ -14,11 +14,18 @@ public class GameInputView {
 
     public List<CarName> readCarNames() {
         String input = inputReader.readLine();
+        validateCarNameInput(input);
         List<String> carNames = StringUtils.extract(input, DELIMITER);
 
         return carNames.stream()
                 .map(CarName::new)
                 .toList();
+    }
+
+    private void validateCarNameInput(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다.");
+        }
     }
 
 }

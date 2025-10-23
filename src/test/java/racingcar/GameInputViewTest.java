@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import racingcar.view.GameInputView;
 import racingcar.view.InputReader;
 
@@ -36,4 +38,16 @@ class GameInputViewTest {
                 .containsExactlyElementsOf(expected);
     }
 
+    @DisplayName("예외: 빈 문자열 입력")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void validate_null_and_empty(String input) {
+        // given
+        InputReader mockReader = () -> input;
+        GameInputView view = new GameInputView(mockReader);
+
+        // when & then
+        assertThatThrownBy(() -> view.readCarNames())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
