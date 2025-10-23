@@ -22,11 +22,11 @@
 
 ### 검증
 
-- [ ] 빈 이름 입력 시 예외 발생
+- [x] 빈 이름 입력 시 예외 발생
     - given: null / then: IllegalArgumentException ("이름이 비어있습니다")
     - given: "" / then: IllegalArgumentException ("이름이 비어있습니다")
     - given: "   " / then: IllegalArgumentException ("이름이 비어있습니다")
-- [ ] 최대 길이 초과 시 예외 발생
+- [x] 최대 길이 초과 시 예외 발생
     - given: "123456" / then: IllegalArgumentException ("이름은 최대 5글자입니다")
 
 ## 2. 시도 횟수
