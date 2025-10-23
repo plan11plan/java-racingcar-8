@@ -65,7 +65,7 @@
     - given: "toolongname" / then: IllegalArgumentException (5글자 초과)
     - given: null / then: IllegalArgumentException (null)
 
-- [ ] 무작위 값에 따라 전진하거나 멈춘다
+- [x] 무작위 값에 따라 전진하거나 멈춘다
     - given: randomValue=4 / then: position=1 (전진 - 경계값)
     - given: randomValue=9 / then: position=1 (전진 - 최댓값)
     - given: randomValue=3 / then: position=0 (멈춤 - 경계값)
