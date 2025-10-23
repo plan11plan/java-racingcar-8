@@ -43,11 +43,7 @@
 
 ### 검증
 
-- [ ] 양의 자연수가 아닌 입력 시 예외 발생
-    - given: "abc" / then: IllegalArgumentException ("시도 횟수는 숫자여야 합니다")
-    - given: "12.5" / then: IllegalArgumentException ("시도 횟수는 숫자여야 합니다")
-    - given: "1,000" / then: IllegalArgumentException ("시도 횟수는 숫자여야 합니다")
-- [ ] 범위를 벗어난 입력 시 예외 발생
+- [x] 범위를 벗어난 입력 시 예외 발생
     - given: 0 / then: IllegalArgumentException ("시도 횟수는 1 이상이어야 합니다")
     - given: -1 / then: IllegalArgumentException ("시도 횟수는 1 이상이어야 합니다")
     - given: 1000001 / then: IllegalArgumentException ("시도 횟수는 1,000,000 이하여야 합니다")
