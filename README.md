@@ -16,7 +16,7 @@
     - given: "   " / then: IllegalArgumentException ("입력이 비어 있습니다")
 - [x] 연속된 구분자 입력 시 예외 발생
     - given: "pobi,,woni" / then: IllegalArgumentException ("연속된 구분자는 허용되지 않습니다")
-- [ ] 구분자로 시작하거나 끝나는 입력 시 예외 발생
+- [x] 구분자로 시작하거나 끝나는 입력 시 예외 발생
     - given: ",pobi,woni" / then: IllegalArgumentException ("구분자로 시작하거나 끝날 수 없습니다")
     - given: "pobi,woni," / then: IllegalArgumentException ("구분자로 시작하거나 끝날 수 없습니다")
 

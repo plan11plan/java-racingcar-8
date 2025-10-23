@@ -29,6 +29,8 @@ public class GameInputView {
         if (input.contains(DELIMITER + DELIMITER)) {
             throw new IllegalArgumentException("[ERROR] 연속된 구분자는 허용되지 않습니다.");
         }
+        if (input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException("[ERROR] 구분자로 시작하거나 끝날 수 없습니다.");
+        }
     }
-    
 }

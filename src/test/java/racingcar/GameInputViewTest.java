@@ -65,4 +65,18 @@ class GameInputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("예외: 구분자로 시작하거나 끝나는 입력")
+    @ParameterizedTest
+    @ValueSource(strings = {",pobi,woni", "pobi,woni,"})
+    void validate_boundary_delimiter(String input) {
+        // given
+        InputReader mockReader = () -> input;
+        GameInputView view = new GameInputView(mockReader);
+
+        // expect
+        assertThatThrownBy(() -> view.readCarNames())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }
