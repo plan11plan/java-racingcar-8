@@ -74,7 +74,7 @@
 
 ### Referee
 
-- [ ] 최대 위치를 찾는다
+- [x] 최대 위치를 찾는다
     - given: [Car(pos=3), Car(pos=5), Car(pos=2)] / then: 5
     - given: [Car(pos=5), Car(pos=5), Car(pos=5)] / then: 5 (모두 동일)
     - given: [Car(pos=0)] / then: 0 (한 대만)
