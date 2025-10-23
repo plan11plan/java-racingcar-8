@@ -1,21 +1,11 @@
 # ToDoList
 
-## 📌 유틸 기능
-
-- [x] 구분자로 문자열을 분리한다
-    - given: ("pobi,woni", ',') → then: ["pobi", "woni"]
-    - given: ("pobi,,woni", ',') → then: IllegalArgumentException (연속된 구분자/빈 이름)
-    - given: (",pobi", ',') → then: IllegalArgumentException (시작이 구분자)
-    - given: ("pobi,", ',') → then: IllegalArgumentException (끝이 구분자)
-
 ## 📌 입력
 
 - [ ] 자동차 이름들을 입력받는다
     - given: "pobi,woni,jun" / then: ["pobi", "woni", "jun"]
     - given: "" / then: IllegalArgumentException (빈 문자열)
     - given: "pobi,,woni" / then: IllegalArgumentException (빈 이름)
-    - given: "aaaaaaaaa,pobi" / then: IllegalArgumentException (5글자 초과)
-    - given: "pobi;woni" / then: IllegalArgumentException (다른 구분자)
 - [ ] 시도 횟수를 입력받는다
     - given: "5" / then: 5
     - given: "0" / then: IllegalArgumentException (범위 미만)
