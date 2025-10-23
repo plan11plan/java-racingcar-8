@@ -2,7 +2,7 @@
 
 ## 📌 유틸 기능
 
-- [ ] 구분자로 문자열을 분리한다
+- [x] 구분자로 문자열을 분리한다
     - given: ("pobi,woni", ',') → then: ["pobi", "woni"]
     - given: ("pobi,,woni", ',') → then: IllegalArgumentException (연속된 구분자/빈 이름)
     - given: (",pobi", ',') → then: IllegalArgumentException (시작이 구분자)
