@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,8 +13,6 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.CarName;
 import racingcar.model.RoundCount;
-import racingcar.view.GameInputView;
-import racingcar.view.InputReader;
 
 class GameInputViewTest {
     static Stream<Arguments> carNameCases() {

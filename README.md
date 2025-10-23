@@ -59,7 +59,7 @@
 
 ### Car
 
-- [ ] 자동차를 생성한다
+- [x] 자동차를 생성한다
     - given: "pobi" / then: Car(name="pobi", position=0)
     - given: "" / then: IllegalArgumentException (빈 이름)
     - given: "toolongname" / then: IllegalArgumentException (5글자 초과)
