@@ -1,16 +1,56 @@
 # ToDoList
 
-## 📌 입력
+# 📌 입력 요구사항
 
-- [ ] 자동차 이름들을 입력받는다
-    - given: "pobi,woni,jun" / then: ["pobi", "woni", "jun"]
-    - given: "" / then: IllegalArgumentException (빈 문자열)
-    - given: "pobi,,woni" / then: IllegalArgumentException (빈 이름)
-- [ ] 시도 횟수를 입력받는다
-    - given: "5" / then: 5
-    - given: "0" / then: IllegalArgumentException (범위 미만)
-    - given: "1000001" / then: IllegalArgumentException (범위 초과)
-    - given: "abc" / then: IllegalArgumentException (자연수 아님)
+## 1. 자동차 이름
+
+### 입력
+
+- [ ] 유효한 입력을 CarName 리스트로 변환
+    - given: "pobi,woni,jun" / then: [CarName("pobi"), CarName("woni"), CarName("jun")]
+    - given: " pobi , woni , jun " / then: [CarName("pobi"), CarName("woni"), CarName("jun")] (공백 제거)
+- [ ] null 입력 시 예외 발생
+    - given: null / then: IllegalArgumentException ("입력이 비어 있습니다")
+- [ ] 빈 문자열 입력 시 예외 발생
+    - given: "" / then: IllegalArgumentException ("입력이 비어 있습니다")
+    - given: "   " / then: IllegalArgumentException ("입력이 비어 있습니다")
+- [ ] 연속된 구분자 입력 시 예외 발생
+    - given: "pobi,,woni" / then: IllegalArgumentException ("연속된 구분자는 허용되지 않습니다")
+- [ ] 구분자로 시작하거나 끝나는 입력 시 예외 발생
+    - given: ",pobi,woni" / then: IllegalArgumentException ("구분자로 시작하거나 끝날 수 없습니다")
+    - given: "pobi,woni," / then: IllegalArgumentException ("구분자로 시작하거나 끝날 수 없습니다")
+
+### 검증
+
+- [ ] 빈 이름 입력 시 예외 발생
+    - given: null / then: IllegalArgumentException ("이름이 비어있습니다")
+    - given: "" / then: IllegalArgumentException ("이름이 비어있습니다")
+    - given: "   " / then: IllegalArgumentException ("이름이 비어있습니다")
+- [ ] 최대 길이 초과 시 예외 발생
+    - given: "123456" / then: IllegalArgumentException ("이름은 최대 5글자입니다")
+
+## 2. 시도 횟수
+
+### 입력
+
+- [ ] 유효한 입력을 RoundCount로 변환
+    - given: "5" / then: RoundCount(5)
+    - given: " 5 " / then: RoundCount(5) (공백 제거)
+- [ ] 빈 입력 시 예외 발생
+    - given: null / then: IllegalArgumentException ("입력이 비어 있습니다")
+    - given: "" / then: IllegalArgumentException ("입력이 비어 있습니다")
+    - given: "   " / then: IllegalArgumentException ("입력이 비어 있습니다")
+
+### 검증
+
+- [ ] 양의 자연수가 아닌 입력 시 예외 발생
+    - given: "abc" / then: IllegalArgumentException ("시도 횟수는 숫자여야 합니다")
+    - given: "12.5" / then: IllegalArgumentException ("시도 횟수는 숫자여야 합니다")
+    - given: "1,000" / then: IllegalArgumentException ("시도 횟수는 숫자여야 합니다")
+- [ ] 범위를 벗어난 입력 시 예외 발생
+    - given: 0 / then: IllegalArgumentException ("시도 횟수는 1 이상이어야 합니다")
+    - given: -1 / then: IllegalArgumentException ("시도 횟수는 1 이상이어야 합니다")
+    - given: 1000001 / then: IllegalArgumentException ("시도 횟수는 1,000,000 이하여야 합니다")
 
 ## 📌 출력
 
