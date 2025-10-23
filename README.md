@@ -75,15 +75,15 @@
 ### Referee
 
 - [x] 최대 위치를 찾는다
-    - given: [Car(pos=3), Car(pos=5), Car(pos=2)] / then: 5
-    - given: [Car(pos=5), Car(pos=5), Car(pos=5)] / then: 5 (모두 동일)
-    - given: [Car(pos=0)] / then: 0 (한 대만)
+    - given: [Car(pos=2), Car(pos=1), Car(pos=0)] / then: 2
+    - given: [Car(pos=2), Car(pos=2), Car(pos=0)] / then: 2 (모두 동일)
+    - given: [Car(pos=2)] / then: 2 (한 대만)
 
-- [ ] 우승자를 결정한다
-    - given: [Car("pobi",5), Car("woni",3), Car("jun",2)] / then: ["pobi"] (단독)
-    - given: [Car("pobi",5), Car("woni",5), Car("jun",3)] / then: ["pobi", "woni"] (공동)
-    - given: [Car("pobi",5), Car("woni",5), Car("jun",5)] / then: ["pobi", "woni", "jun"] (전원)
-    - given: [Car("jun",5), Car("pobi",5)] / then: ["jun", "pobi"] (입력 순서)
+- [x] 우승자를 선출한다
+    - given: [Car("pobi",2), Car("woni",1), Car("jun",0)] / then: ["pobi"] (단독)
+    - given: [Car("pobi",2), Car("woni",2), Car("jun",0)] / then: ["pobi", "woni"] (공동)
+    - given: [Car("pobi",2), Car("woni",2), Car("jun",2)] / then: ["pobi", "woni", "jun"] (전원)
+    - given: [Car("jun",2), Car("pobi",1)] / then: ["jun", "pobi"] (입력 순서)
 
 ### Game (도메인 객체 조합)
 

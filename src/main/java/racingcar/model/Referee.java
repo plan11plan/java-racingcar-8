@@ -3,7 +3,7 @@ package racingcar.model;
 import java.util.List;
 
 public class Referee {
-    List<Car> cars;
+    private final List<Car> cars;
 
     public Referee(List<Car> cars) {
         this.cars = cars;
@@ -15,5 +15,11 @@ public class Referee {
                 .mapToInt(Integer::intValue)
                 .max()
                 .getAsInt();
+    }
+
+    public List<Car> electWinners(int maxPosition) {
+        return this.cars.stream()
+                .filter(car -> car.position() == maxPosition)
+                .toList();
     }
 }

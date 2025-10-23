@@ -59,4 +59,90 @@ class RefereeTest {
         Assertions.assertThat(maxPosition).isEqualTo(2);
     }
 
+    @DisplayName("우승자를 선출한다. - 단독")
+    @Test
+    void electWinners_only_one() {
+        // given
+        List<Car> cars = List.of(
+                new Car(new CarName("pobi")).tryMove(5).tryMove(5),
+                new Car(new CarName("woni")).tryMove(5),
+                new Car(new CarName("jun"))
+        );
+        Referee referee = new Referee(cars);
+        int maxPosition = referee.findMaxPosition();
+
+        // when
+        List<Car> winners = referee.electWinners(maxPosition);
+
+        // then
+        Assertions.assertThat(winners.size()).isEqualTo(1);
+        Assertions.assertThat(winners.getFirst().name().name()).isEqualTo("pobi");
+    }
+
+    @DisplayName("우승자를 선출한다. - 공동")
+    @Test
+    void electWinners_joint_winner() {
+        // given
+        List<Car> cars = List.of(
+                new Car(new CarName("pobi")).tryMove(5).tryMove(5),
+                new Car(new CarName("woni")).tryMove(5).tryMove(5),
+                new Car(new CarName("jun"))
+        );
+        Referee referee = new Referee(cars);
+        int maxPosition = referee.findMaxPosition();
+
+        // when
+        List<Car> winners = referee.electWinners(maxPosition);
+
+        // then
+        Assertions.assertThat(winners.size()).isEqualTo(2);
+        Assertions.assertThat(winners.getFirst().name().name()).isEqualTo("pobi");
+        Assertions.assertThat(winners.getLast().name().name()).isEqualTo("woni");
+
+    }
+
+    @DisplayName("우승자를 선출한다. - ㅁㅗㄷㅜ")
+    @Test
+    void electWinners_all_winner() {
+        // given
+        List<Car> cars = List.of(
+                new Car(new CarName("pobi")).tryMove(5).tryMove(5),
+                new Car(new CarName("woni")).tryMove(5).tryMove(5),
+                new Car(new CarName("jun")).tryMove(5).tryMove(5)
+        );
+        Referee referee = new Referee(cars);
+        int maxPosition = referee.findMaxPosition();
+
+        // when
+        List<Car> winners = referee.electWinners(maxPosition);
+
+        // then
+        Assertions.assertThat(winners.size()).isEqualTo(3);
+        Assertions.assertThat(winners.getFirst().name().name()).isEqualTo("pobi");
+        Assertions.assertThat(winners.getLast().name().name()).isEqualTo("jun");
+
+    }
+
+    @DisplayName("우승자를 선출한다. - 초기화 순서다.")
+    @Test
+    void electWinners_has_input_order() {
+        // given
+        List<Car> cars = List.of(
+                new Car(new CarName("pobi")).tryMove(5).tryMove(5),
+                new Car(new CarName("woni")).tryMove(5).tryMove(5),
+                new Car(new CarName("jun")).tryMove(5).tryMove(5)
+        );
+        Referee referee = new Referee(cars);
+        int maxPosition = referee.findMaxPosition();
+
+        // when
+        List<Car> winners = referee.electWinners(maxPosition);
+
+        // then
+        Assertions.assertThat(winners.size()).isEqualTo(3);
+        Assertions.assertThat(winners.getFirst().name().name()).isEqualTo("pobi");
+        Assertions.assertThat(winners.getLast().name().name()).isEqualTo("jun");
+
+    }
+
 }
