@@ -22,6 +22,21 @@ public class GameInputView {
                 .toList();
     }
 
+    public RoundCount readRoundCount() {
+        String input = inputReader.readLine();
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다.");
+        }
+        input = input.trim();
+        int roundCount = 0;
+        try {
+            roundCount = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닙니다.");
+        }
+        return new RoundCount(roundCount);
+    }
+
     private void validateCarNameInput(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다.");

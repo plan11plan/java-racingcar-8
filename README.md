@@ -33,13 +33,13 @@
 
 ### 입력
 
-- [ ] 유효한 입력을 RoundCount로 변환
+- [x] 유효한 입력을 RoundCount로 변환
     - given: "5" / then: RoundCount(5)
     - given: " 5 " / then: RoundCount(5) (공백 제거)
-- [ ] 빈 입력 시 예외 발생
-    - given: null / then: IllegalArgumentException ("입력이 비어 있습니다")
-    - given: "" / then: IllegalArgumentException ("입력이 비어 있습니다")
-    - given: "   " / then: IllegalArgumentException ("입력이 비어 있습니다")
+    - 빈 값 입력 시 예외 발생
+        - given: null / then: IllegalArgumentException ("입력이 비어 있습니다")
+        - given: "" / then: IllegalArgumentException ("입력이 비어 있습니다")
+        - given: "   " / then: IllegalArgumentException ("입력이 비어 있습니다")
 
 ### 검증
 

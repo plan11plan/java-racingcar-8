@@ -13,12 +13,20 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.GameInputView;
 import racingcar.view.InputReader;
+import racingcar.view.RoundCount;
 
 class GameInputViewTest {
     static Stream<Arguments> carNameCases() {
         return Stream.of(
                 Arguments.of("pobi,woni,jun", List.of("pobi", "woni", "jun")),
                 Arguments.of("  pobi ,  woni ,  jun  ", List.of("pobi", "woni", "jun"))
+        );
+    }
+
+    static Stream<Arguments> roundCountCases() {
+        return Stream.of(
+                Arguments.of("10", 10),
+                Arguments.of(" 10", 10)
         );
     }
 
@@ -78,5 +86,33 @@ class GameInputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("유효한 입력을 RoundCount로 변환")
+    @ParameterizedTest
+    @MethodSource("roundCountCases")
+    void read_round_count(String input, int expected) {
+        // given
+        InputReader mockReader = () -> input;
+        GameInputView inputView = new GameInputView(mockReader);
 
+        // when
+        RoundCount roundCount = inputView.readRoundCount();
+
+        // then
+        assertThat(roundCount)
+                .extracting(RoundCount::roundCount)
+                .isEqualTo(expected);
+    }
+
+    @DisplayName("예외: 시도 횟수 빈 값 입력 ")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void validate_round_count_input(String input) {
+        // given
+        InputReader mockReader = () -> input;
+        GameInputView inputView = new GameInputView(mockReader);
+
+        // expect
+        assertThatThrownBy(() -> inputView.readRoundCount())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
