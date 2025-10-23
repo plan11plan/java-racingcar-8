@@ -26,6 +26,9 @@ public class GameInputView {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다.");
         }
+        if (input.contains(DELIMITER + DELIMITER)) {
+            throw new IllegalArgumentException("[ERROR] 연속된 구분자는 허용되지 않습니다.");
+        }
     }
-
+    
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.GameInputView;
 import racingcar.view.InputReader;
 
@@ -46,8 +47,22 @@ class GameInputViewTest {
         InputReader mockReader = () -> input;
         GameInputView view = new GameInputView(mockReader);
 
-        // when & then
+        // expect
         assertThatThrownBy(() -> view.readCarNames())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("예외: 연속된 구분자 입력")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,,woni"})
+    void validate_continuous_delimiter(String input) {
+        // given
+        InputReader mockReader = () -> input;
+        GameInputView view = new GameInputView(mockReader);
+
+        // expect
+        assertThatThrownBy(() -> view.readCarNames())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
