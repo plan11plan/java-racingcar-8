@@ -6,7 +6,7 @@
 
 ### 입력
 
-- [ ] 유효한 입력을 CarName 리스트로 변환
+- [x] 유효한 입력을 CarName 리스트로 변환
     - given: "pobi,woni,jun" / then: [CarName("pobi"), CarName("woni"), CarName("jun")]
     - given: " pobi , woni , jun " / then: [CarName("pobi"), CarName("woni"), CarName("jun")] (공백 제거)
 - [ ] null 입력 시 예외 발생
