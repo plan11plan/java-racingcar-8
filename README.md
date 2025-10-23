@@ -87,9 +87,8 @@
 
 ### Game (도메인 객체 조합)
 
-- [ ] 자동차 목록을 초기화한다
-    - given: ["pobi", "woni"] / then: List<Car> 2개 생성
-    - given: ["pobi", "woni", "jun"] / then: List<Car> 3개 생성 (입력 순서 유지)
+- [x] 게임을 초기화한다.(자동차 목록,판 수,심판)
+    - given: [자동차 이름들, 3라운드, 심판] / then: 게임 생성
     - given: [] / then: IllegalArgumentException (빈 목록)
 
 - [ ] 한 라운드를 실행한다
