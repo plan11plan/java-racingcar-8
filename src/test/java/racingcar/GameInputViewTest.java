@@ -11,9 +11,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.model.CarName;
+import racingcar.model.RoundCount;
 import racingcar.view.GameInputView;
 import racingcar.view.InputReader;
-import racingcar.view.RoundCount;
 
 class GameInputViewTest {
     static Stream<Arguments> carNameCases() {

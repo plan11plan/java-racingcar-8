@@ -1,8 +1,9 @@
 package racingcar.view;
 
 import java.util.List;
-import racingcar.CarName;
 import racingcar.StringUtils;
+import racingcar.model.CarName;
+import racingcar.model.RoundCount;
 
 public class GameInputView {
     private static final String DELIMITER = ",";

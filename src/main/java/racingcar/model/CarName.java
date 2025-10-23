@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.model;
 
 public record CarName(String name) {
     private static final int MAX_NAME_LEN = 5;
