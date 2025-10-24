@@ -91,10 +91,10 @@
     - given: [자동차 이름들, 3라운드, 심판] / then: 게임 생성
     - given: [] / then: IllegalArgumentException (빈 목록)
 
-- [ ] 한 라운드를 실행한다
-    - given: [Car("pobi",0), Car("woni",0)] / then: 각 자동차 움직이기
+- [x] 한 라운드를 실행한다
+    - given: 랜덤숫자가 기준값인 4일 때 / then: 각 자동차 움직이기
+    - given: 랜덤숫자가 기준값이 아닌 3일 때 / then: 움직이지 않기
     - given: 실행 후 / then: 자동차 순서 유지
-    - given: 실행 후 / then: 각 자동차의 position 변경 가능
 
 - [ ] 전체 게임을 실행한다
     - given: (["pobi", "woni"], 시도=3) / then: 3라운드 실행

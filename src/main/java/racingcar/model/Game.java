@@ -25,4 +25,11 @@ public class Game {
         return new Game(cars, roundCount, referee);
     }
 
+    public List<Car> playRound(List<Car> current, RandomNumberGenerator randomNumberGenerator) {
+        List<Car> cars = current.stream()
+                .map(car -> car.tryMove(randomNumberGenerator.pickNumberInRange(0, 9)))
+                .toList();
+        return cars;
+    }
+
 }

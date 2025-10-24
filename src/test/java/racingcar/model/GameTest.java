@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -48,6 +49,60 @@ class GameTest {
         // expect
         assertThatThrownBy(() -> Game.init(carNames, roundCount, referee))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("한 라운드를 진행한다 - 랜덤숫자생성기가 4를 반환하면 모두 한 칸 전진")
+    @Test
+    void playRound_moves_when_rng_return_4() {
+        // given
+        List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
+        Referee referee = new Referee();
+        Game game = Game.init(carNames, 3, referee);
+        List<Car> cars = carNames.stream().map(Car::new).toList();
+        RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
+
+        // when
+        List<Car> playedCars = game.playRound(cars, rng);
+
+        // then
+        assertThat(playedCars).hasSize(cars.size());
+        assertThat(playedCars.stream().mapToInt(Car::position).boxed().toList())
+                .containsExactly(1, 1, 1);
+        assertThat(playedCars.stream().map(c -> c.name().name()).toList())
+                .containsExactly("pobi", "woni", "jun");
+    }
+
+    @DisplayName("한 라운드를 진행한다 - 랜덤숫자생성기가 3을 반환하면 모두 정지")
+    @Test
+    void playRound_stays_when_rng_return_3() {
+        // given
+        List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
+        Game game = Game.init(carNames, 1, new Referee());
+        List<Car> cars = carNames.stream().map(Car::new).toList();
+        RandomNumberGenerator rng = (startInclusive, endInclusive) -> 3;
+
+        // when
+        List<Car> playedCars = game.playRound(cars, rng);
+
+        // then
+        assertThat(playedCars.stream().mapToInt(Car::position).sum()).isEqualTo(0);
+    }
+
+    @DisplayName("한 라운드를 진행해도 자동차의 순서는 유지된다")
+    @Test
+    void playRound_preserves_order() {
+        // given
+        List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
+        Game game = Game.init(carNames, 1, new Referee());
+        List<Car> cars = carNames.stream().map(Car::new).toList();
+        RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
+
+        // when
+        List<Car> played = game.playRound(cars, rng);
+
+        // then
+        assertThat(played.stream().map(c -> c.name().name()).toList())
+                .containsExactly("pobi", "woni", "jun");
     }
 
 }
