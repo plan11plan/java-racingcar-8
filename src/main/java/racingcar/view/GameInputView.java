@@ -14,6 +14,8 @@ public class GameInputView {
     }
 
     public List<CarName> readCarNames() {
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+
         String input = inputReader.readLine();
         validateCarNameInput(input);
         List<String> carNames = StringUtils.extract(input, DELIMITER);
@@ -24,6 +26,8 @@ public class GameInputView {
     }
 
     public RoundCount readRoundCount() {
+        System.out.println("시도할 횟수는 몇 회인가요?");
+
         String input = inputReader.readLine();
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다.");
