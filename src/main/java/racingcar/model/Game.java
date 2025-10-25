@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.List;
 import java.util.Objects;
+import racingcar.view.GameOutputView;
 
 public class Game {
     private final List<Car> cars;
@@ -25,11 +26,25 @@ public class Game {
         return new Game(cars, roundCount, referee);
     }
 
-    public List<Car> playRound(List<Car> current, RandomNumberGenerator randomNumberGenerator) {
+    public List<Car> playRound(List<Car> current, RandomNumberGenerator randomNumberGenerator,
+                               GameOutputView gameOutputView) {
         List<Car> cars = current.stream()
                 .map(car -> car.tryMove(randomNumberGenerator.pickNumberInRange(0, 9)))
                 .toList();
+        gameOutputView.printRoundResult(cars);
         return cars;
+    }
+
+    public List<Car> play(RandomNumberGenerator randomNumberGenerator, GameOutputView gameOutputView) {
+        List<Car> cars = this.cars;
+        for (int i = 0; i < roundCount; i++) {
+            cars = playRound(cars, randomNumberGenerator, gameOutputView);
+        }
+        int maxPosition = referee.findMaxPosition(cars);
+        List<Car> winners = referee.electWinners(cars, maxPosition);
+        new GameOutputView().printWinnerResult(winners);
+        return cars;
+
     }
 
 }

@@ -96,8 +96,5 @@
     - given: 랜덤숫자가 기준값이 아닌 3일 때 / then: 움직이지 않기
     - given: 실행 후 / then: 자동차 순서 유지
 
-- [ ] 전체 게임을 실행한다
-    - given: (["pobi", "woni"], 시도=3) / then: 3라운드 실행
-    - given: 각 라운드 종료 시 / then: 결과 출력 호출
-    - given: 게임 종료 시 / then: 우승자 출력 호출
-    - given: 시도=0 / then: IllegalArgumentException (0회 이하)
+- [x] 전체 게임을 실행한다
+    - given: (["pobi", "woni", 'jun'], 시도=2) / then: 우승자를 선출한다.
