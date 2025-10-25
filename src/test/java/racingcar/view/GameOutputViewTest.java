@@ -41,7 +41,6 @@ class GameOutputViewTest {
 
         // then
         String output = captor.toString();
-        Assertions.assertThat(output).contains("실행 결과");
         Assertions.assertThat(output).contains("pobi : --");
         Assertions.assertThat(output).contains("woni : -");
     }

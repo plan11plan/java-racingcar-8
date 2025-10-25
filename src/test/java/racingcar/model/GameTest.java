@@ -5,18 +5,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.view.GameOutputView;
 
 class GameTest {
-    private GameOutputView gameOutputView;
 
-    @BeforeEach
-    void setUp() {
-        gameOutputView = new GameOutputView();
-    }
 
     @DisplayName("게임을 초기화한다.")
     @Test
@@ -70,7 +63,7 @@ class GameTest {
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
 
         // when
-        List<Car> playedCars = game.playRound(cars, rng, gameOutputView);
+        List<Car> playedCars = game.playRound(cars, rng);
 
         // then
         assertThat(playedCars).hasSize(cars.size());
@@ -90,7 +83,7 @@ class GameTest {
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 3;
 
         // when
-        List<Car> playedCars = game.playRound(cars, rng, gameOutputView);
+        List<Car> playedCars = game.playRound(cars, rng);
 
         // then
         assertThat(playedCars.stream().mapToInt(Car::position).sum()).isEqualTo(0);
@@ -106,7 +99,7 @@ class GameTest {
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
 
         // when
-        List<Car> played = game.playRound(cars, rng, gameOutputView);
+        List<Car> played = game.playRound(cars, rng);
 
         // then
         assertThat(played.stream().map(c -> c.name().name()).toList())
@@ -122,10 +115,11 @@ class GameTest {
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
 
         // when
-        List<Car> winners = game.play(rng, gameOutputView);
+        GameResult result = game.play(rng);
 
         //then
-        org.assertj.core.api.Assertions.assertThat(winners).hasSize(3);
+        org.assertj.core.api.Assertions.assertThat(result.winners()).hasSize(3);
+
 
     }
 
