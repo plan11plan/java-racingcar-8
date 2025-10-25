@@ -18,9 +18,8 @@ public class Car {
     public Car tryMove(int number) {
         if (number < MOVE_CRITERIA) {
             return this;
-        } else {
-            return this.move();
         }
+        return this.move();
     }
 
     private Car move() {
