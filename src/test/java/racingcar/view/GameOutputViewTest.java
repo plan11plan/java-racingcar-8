@@ -46,4 +46,22 @@ class GameOutputViewTest {
         Assertions.assertThat(output).contains("woni : -");
     }
 
+    @Test
+    @DisplayName("최종 우승자를 올바르게 출력한다")
+    void printWinnerResultTest() {
+        // given
+        List<Car> winners = List.of(
+                new Car(new CarName("pobi")),
+                new Car(new CarName("jun"))
+        );
+        String expectedOutput = "최종 우승자 : pobi, jun\n";
+
+        // when
+        new GameOutputView().printWinnerResult(winners);
+
+        // then
+        String output = captor.toString();
+        Assertions.assertThat(output).isEqualTo(expectedOutput);
+    }
+
 }

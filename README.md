@@ -52,7 +52,7 @@
 
 - [x] 라운드별 실행 결과를 출력한다
     - given: {Car("pobi",3), Car("woni",2)} / then: "pobi : ---\nwoni : --" (입력 순서대로)
-- [ ] 최종 우승자를 출력한다
+- [x] 최종 우승자를 출력한다
     - given: {"pobi", "jun"} / then: "최종 우승자 : pobi, jun" (입력 순서대로)
 
 ## 📌 도메인 객체
