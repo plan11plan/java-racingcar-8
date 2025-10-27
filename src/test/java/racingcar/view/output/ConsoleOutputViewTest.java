@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.output;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
 import racingcar.model.CarName;
 
-class GameOutputViewTest {
+class ConsoleOutputViewTest {
     private PrintStream standardOut;
     private OutputStream captor;
 
@@ -39,7 +39,7 @@ class GameOutputViewTest {
         );
 
         // when
-        new GameOutputView().printRoundResult(cars);
+        new ConsoleOutputView().printRoundResult(cars);
 
         // then
         String output = captor.toString();
@@ -58,7 +58,7 @@ class GameOutputViewTest {
         String expectedOutput = "최종 우승자 : pobi, jun\n";
 
         // when
-        new GameOutputView().printWinnerResult(winners);
+        new ConsoleOutputView().printWinnerResult(winners);
 
         // then
         String output = captor.toString();

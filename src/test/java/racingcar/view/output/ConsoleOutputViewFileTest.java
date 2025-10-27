@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.output;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import racingcar.model.Car;
 import racingcar.model.CarName;
 
-class GameOutputViewFileTest {
+class ConsoleOutputViewFileTest {
     private PrintStream standardOut;
     private PrintStream fileOut;
     private Path outputFile;
@@ -47,7 +47,7 @@ class GameOutputViewFileTest {
         );
 
         // when
-        new GameOutputView().printRoundResult(cars);
+        new ConsoleOutputView().printRoundResult(cars);
         fileOut.flush();
 
         // then
@@ -62,7 +62,7 @@ class GameOutputViewFileTest {
         List<Car> winners = List.of(new Car(new CarName("pobi")));
 
         // when
-        new GameOutputView().printWinnerResult(winners);
+        new ConsoleOutputView().printWinnerResult(winners);
         fileOut.flush();
 
         // then
@@ -81,7 +81,7 @@ class GameOutputViewFileTest {
         );
 
         // when
-        new GameOutputView().printRoundResult(cars);
+        new ConsoleOutputView().printRoundResult(cars);
         fileOut.flush();
 
         // then

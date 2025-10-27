@@ -50,10 +50,15 @@
 
 ## 📌 출력
 
-- [x] 라운드별 실행 결과를 출력한다
-    - given: {Car("pobi",3), Car("woni",2)} / then: "pobi : ---\nwoni : --" (입력 순서대로)
-- [x] 최종 우승자를 출력한다
-    - given: {"pobi", "jun"} / then: "최종 우승자 : pobi, jun" (입력 순서대로)
+- [x] 게임 결과 헤더 메시지를 반환한다
+    - "\n"+ "실행 결과"
+- [x] 개별 자동차 위치 포맷을 반환한다
+    - given: Car("pobi", position=3)/ then: "pobi : ---"
+    - given: Car("pobi", position=0)/ then: "pobi : "
+- [x] 라운드별 실행 결과를 문자열을 반환한다
+    - given: {Car("pobi",3), Car("woni",2)} / then: "pobi : --- \n woni : --
+- [x] 최종 우승자 포맷을 검증한다.
+    - given: {"pobi", "jun"} / then: "최종 우승자 : pobi, jun"
 
 ## 📌 도메인 객체
 
