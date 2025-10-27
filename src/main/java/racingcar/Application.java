@@ -6,7 +6,7 @@ import racingcar.model.Referee;
 import racingcar.model.WoowaCourseRandomNumberGenerator;
 import racingcar.view.ConsoleInputReader;
 import racingcar.view.GameInputView;
-import racingcar.view.output.FormattableOutputView;
+import racingcar.view.output.GameOutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class Application {
         try {
             RacingCarApplication application = new RacingCarApplication(
                     new GameInputView(new ConsoleInputReader()),
-                    new FormattableOutputView(),
+                    new GameOutputView(),
                     new WoowaCourseRandomNumberGenerator(),
                     new Referee()
             );
