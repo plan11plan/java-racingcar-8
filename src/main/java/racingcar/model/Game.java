@@ -6,16 +6,16 @@ import java.util.Objects;
 
 public class Game {
     private final List<Car> cars;
-    private final int roundCount;
+    private final RoundCount roundCount;
     private final Referee referee;
 
-    private Game(List<Car> cars, int roundCount, Referee referee) {
+    private Game(List<Car> cars, RoundCount roundCount, Referee referee) {
         this.cars = cars;
         this.roundCount = roundCount;
         this.referee = referee;
     }
 
-    public static Game init(List<CarName> carNames, int roundCount, Referee referee) {
+    public static Game init(List<CarName> carNames, RoundCount roundCount, Referee referee) {
         if (carNames.isEmpty() || Objects.isNull(carNames)) {
             throw new IllegalArgumentException("[ERROR] 자동차 목록이 비어있습니다.");
         }
@@ -36,7 +36,7 @@ public class Game {
         List<Car> cars = this.cars;
         List<List<Car>> roundResults = new ArrayList<>();
 
-        for (int i = 0; i < roundCount; i++) {
+        for (int i = 0; i < roundCount.roundCount(); i++) {
             cars = playRound(cars, randomNumberGenerator);
             roundResults.add(cars);
         }

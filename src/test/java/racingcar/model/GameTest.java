@@ -16,7 +16,7 @@ class GameTest {
     public void init() {
         // given
         List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
-        int roundCount = 3;
+        RoundCount roundCount = new RoundCount(3);
         Referee referee = new Referee();
 
         // when
@@ -31,7 +31,7 @@ class GameTest {
     public void init_fail_when_car_empty() {
         // given
         List<CarName> carNames = List.of();
-        int roundCount = 3;
+        RoundCount roundCount = new RoundCount(3);
         Referee referee = new Referee();
 
         // expect
@@ -44,7 +44,7 @@ class GameTest {
     public void init_fail_when_referee_empty() {
         // given
         List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
-        int roundCount = 3;
+        RoundCount roundCount = new RoundCount(3);
         Referee referee = null;
 
         // expect
@@ -58,7 +58,9 @@ class GameTest {
         // given
         List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
         Referee referee = new Referee();
-        Game game = Game.init(carNames, 3, referee);
+        RoundCount roundCount = new RoundCount(3);
+
+        Game game = Game.init(carNames, roundCount, referee);
         List<Car> cars = carNames.stream().map(Car::new).toList();
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
 
@@ -78,7 +80,8 @@ class GameTest {
     void playRound_stays_when_rng_return_3() {
         // given
         List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
-        Game game = Game.init(carNames, 1, new Referee());
+        RoundCount roundCount = new RoundCount(1);
+        Game game = Game.init(carNames, roundCount, new Referee());
         List<Car> cars = carNames.stream().map(Car::new).toList();
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 3;
 
@@ -94,7 +97,8 @@ class GameTest {
     void playRound_preserves_order() {
         // given
         List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
-        Game game = Game.init(carNames, 1, new Referee());
+        RoundCount roundCount = new RoundCount(1);
+        Game game = Game.init(carNames, roundCount, new Referee());
         List<Car> cars = carNames.stream().map(Car::new).toList();
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
 
@@ -111,7 +115,8 @@ class GameTest {
     void play() {
         // given
         List<CarName> carNames = List.of(new CarName("pobi"), new CarName("woni"), new CarName("jun"));
-        Game game = Game.init(carNames, 2, new Referee());
+        RoundCount roundCount = new RoundCount(2);
+        Game game = Game.init(carNames, roundCount, new Referee());
         RandomNumberGenerator rng = (startInclusive, endInclusive) -> 4;
 
         // when

@@ -28,7 +28,7 @@ public class RacingCarApplication {
         List<CarName> carNames = inputView.readCarNames();
         RoundCount roundCount = inputView.readRoundCount();
 
-        Game game = Game.init(carNames, roundCount.roundCount(), referee);
+        Game game = Game.init(carNames, roundCount, referee);
         GameResult result = game.play(randomNumberGenerator);
 
         outputView.printGameResult(result);
