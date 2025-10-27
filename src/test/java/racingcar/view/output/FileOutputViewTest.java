@@ -2,8 +2,8 @@ package racingcar.view.output;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -15,27 +15,21 @@ import org.junit.jupiter.api.io.TempDir;
 import racingcar.model.Car;
 import racingcar.model.CarName;
 
-class ConsoleOutputViewFileTest {
-    private PrintStream standardOut;
-    private PrintStream fileOut;
+class FileOutputViewTest {
+    private GameOutputView gameOutputView;
     private Path outputFile;
 
     @BeforeEach
     void setUp(@TempDir Path tempDir) throws IOException {
-        standardOut = System.out;
         outputFile = tempDir.resolve("output.txt");
-        fileOut = new PrintStream(Files.newOutputStream(outputFile));
-        System.setOut(fileOut);
+        FileOutputStream fos = new FileOutputStream(outputFile.toFile());
+        gameOutputView = new GameOutputView(fos);
     }
 
     @AfterEach
     void tearDown() throws IOException {
-        fileOut.close();
-        System.setOut(standardOut);
-
-        System.out.println("=== 파일에 기록된 출력 ===");
         System.out.println(Files.readString(outputFile).trim());
-        System.out.println("=========================");
+
     }
 
     @Test
@@ -47,8 +41,7 @@ class ConsoleOutputViewFileTest {
         );
 
         // when
-        new ConsoleOutputView().printRoundResult(cars);
-        fileOut.flush();
+        gameOutputView.printRoundResult(cars);
 
         // then
         String content = Files.readString(outputFile);
@@ -62,13 +55,12 @@ class ConsoleOutputViewFileTest {
         List<Car> winners = List.of(new Car(new CarName("pobi")));
 
         // when
-        new ConsoleOutputView().printWinnerResult(winners);
-        fileOut.flush();
+        gameOutputView.printWinnerResult(winners);
 
         // then
         assertThat(outputFile).exists();
         String content = Files.readString(outputFile);
-        assertThat(content).isEqualTo("최종 우승자 : pobi\n");
+        assertThat(content).isEqualTo("최종 우승자 : pobi" + System.lineSeparator());
     }
 
     @Test
@@ -81,8 +73,7 @@ class ConsoleOutputViewFileTest {
         );
 
         // when
-        new ConsoleOutputView().printRoundResult(cars);
-        fileOut.flush();
+        gameOutputView.printRoundResult(cars);
 
         // then
         long fileSize = Files.size(outputFile);
