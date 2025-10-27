@@ -5,7 +5,7 @@ import racingcar.model.Car;
 import racingcar.model.CarName;
 import racingcar.model.GameResult;
 
-public class ConsoleOutputView implements OutputView {
+public class ConsoleOutputView implements GameOutputView {
 
     @Override
     public void printGameResult(GameResult result) {

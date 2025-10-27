@@ -8,7 +8,7 @@ import racingcar.model.RandomNumberGenerator;
 import racingcar.model.Referee;
 import racingcar.model.RoundCount;
 import racingcar.view.GameInputView;
-import racingcar.view.GameOutputView;
+import racingcar.view.output.GameOutputView;
 
 public class RacingCarApplication {
     private final GameInputView inputView;

@@ -4,7 +4,7 @@ import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.GameResult;
 
-public interface OutputView {
+public interface GameOutputView {
     void printGameResultMessage();
 
     void printRoundResult(List<Car> cars);
