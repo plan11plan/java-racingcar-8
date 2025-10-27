@@ -15,12 +15,16 @@ import racingcar.model.CarName;
 class ConsoleOutputViewTest {
     private PrintStream standardOut;
     private OutputStream captor;
+    private GameOutputView gameOutputView;
+
 
     @BeforeEach
     void setUp() {
         this.standardOut = System.out;
         this.captor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(this.captor));
+        gameOutputView = new GameOutputView();
+
     }
 
     @AfterEach
@@ -39,7 +43,7 @@ class ConsoleOutputViewTest {
         );
 
         // when
-        new ConsoleOutputView().printRoundResult(cars);
+        gameOutputView.printRoundResult(cars);
 
         // then
         String output = captor.toString();
@@ -58,7 +62,7 @@ class ConsoleOutputViewTest {
         String expectedOutput = "최종 우승자 : pobi, jun\n";
 
         // when
-        new ConsoleOutputView().printWinnerResult(winners);
+        gameOutputView.printWinnerResult(winners);
 
         // then
         String output = captor.toString();
