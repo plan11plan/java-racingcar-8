@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -13,18 +14,19 @@ import racingcar.model.CarName;
 
 class GameOutputViewTest {
     private PrintStream standardOut;
-    private ByteArrayOutputStream captor;
+    private OutputStream captor;
 
     @BeforeEach
     void setUp() {
-        standardOut = System.out;
-        captor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(captor));
+        this.standardOut = System.out;
+        this.captor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(this.captor));
     }
 
     @AfterEach
     void tearDown() {
-        System.setOut(standardOut);
+        System.setOut(this.standardOut);
+        System.out.println(this.captor.toString().trim());
     }
 
     @Test
